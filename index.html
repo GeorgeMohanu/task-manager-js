@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,26 +8,153 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="container">
-      <h1>Task Manager</h1>
-      <form id="task-form">
-        <input
-          type="text"
-          id="task-input"
-          placeholder="Enter a new task"
-          required
-        />
-        <button type="submit">Add Task</button>
-      </form>
-      <ul id="task-list"></ul>
-    </div>
-    <div>
-      <div class="filters">
-        <button onclick="filterTasks('all')">Tutti</button>
-        <button onclick="filterTasks('todo')">Todo</button>
-        <button onclick="filterTasks('doing')">Doing</button>
-        <button onclick="filterTasks('done')">Done</button>
-      </div>
+    <div class="app-wrapper">
+      <main class="container">
+        <header class="header">
+          <div>
+            <h1>Task Manager</h1>
+            <p class="subtitle">
+              Gestione completa di attività con ricerca, priorità, categorie,
+              salvataggio, filtri avanzati, modifica inline, tema e backup dati.
+            </p>
+          </div>
+          <button id="theme-toggle" class="theme-toggle" type="button">
+            Tema
+          </button>
+        </header>
+        <section class="panel">
+          <form id="task-form" class="task-form">
+            <input
+              type="text"
+              id="task-input"
+              placeholder="Inserisci una nuova attività"
+              maxlength="100"
+              required
+            />
+            <select id="task-status">
+              <option value="todo">Todo</option>
+              <option value="doing">Doing</option>
+              <option value="done">Done</option>
+            </select>
+            <select id="task-priority">
+              <option value="bassa">Priorità bassa</option>
+              <option value="media" selected>Priorità media</option>
+
+              <option value="alta">Priorità alta</option>
+            </select>
+            <input
+              type="text"
+              id="task-category"
+              placeholder="Categoria (es. Studio)"
+              maxlength="30"
+            />
+            <input type="date" id="task-date" />
+            <button type="submit">Aggiungi</button>
+          </form>
+        </section>
+        <section class="controls panel">
+          <div class="filters">
+            <button class="filter-btn active" data-filter="all" type="button">
+              Tutti
+            </button>
+            <button class="filter-btn" data-filter="todo" type="button">
+              Todo
+            </button>
+            <button class="filter-btn" data-filter="doing" type="button">
+              Doing
+            </button>
+            <button class="filter-btn" data-filter="done" type="button">
+              Done
+            </button>
+          </div>
+          <div class="advanced-controls">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Cerca task o categoria..."
+            />
+            <select id="sort-select">
+              <option value="newest">Più recenti</option>
+              <option value="oldest">Più vecchi</option>
+              <option value="alphabetical">A-Z</option>
+              <option value="status">Per stato</option>
+              <option value="priority">Per priorità</option>
+              <option value="deadline">Per scadenza</option>
+            </select>
+            <select id="priority-filter">
+              <option value="all">Tutte le priorità</option>
+              <option value="alta">Alta</option>
+              <option value="media">Media</option>
+              <option value="bassa">Bassa</option>
+            </select>
+            <select id="category-filter">
+              <option value="all">Tutte le categorie</option>
+            </select>
+            <label class="checkbox-filter">
+              <input type="checkbox" id="show-overdue-only" />
+              <span>Solo scaduti</span>
+            </label>
+          </div>
+        </section>
+        <section class="stats-grid">
+          <article class="stat-card">
+            <span>Totali</span><strong id="total-tasks">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Todo</span><strong id="todo-count">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Doing</span><strong id="doing-count">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Done</span><strong id="done-count">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Alta priorità</span
+            ><strong id="high-priority-count">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Scaduti</span><strong id="overdue-count">0</strong>
+          </article>
+        </section>
+        <section class="panel progress-panel">
+          <div class="progress-header">
+            <span>Avanzamento completamento</span>
+            <strong id="progress-text">0%</strong>
+          </div>
+          <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+        </section>
+        <section class="bulk-actions panel">
+          <button id="mark-all-done" type="button">
+            Segna tutto come done
+          </button>
+          <button id="clear-done" type="button">Elimina completati</button>
+          <button id="clear-overdue-completed" type="button">
+            Pulisci done scaduti
+          </button>
+          <button id="export-btn" type="button">Esporta JSON</button>
+          <label class="import-label">
+            Importa JSON
+            <input
+              type="file"
+              id="import-input"
+              accept="application/json"
+              hidden
+            />
+          </label>
+          <button id="delete-all" type="button" class="danger">
+            Elimina tutto
+          </button>
+        </section>
+        <section>
+          <ul id="task-list" class="task-list"></ul>
+          <p id="empty-state" class="empty-state hidden">
+            Nessun task trovato.
+          </p>
+        </section>
+      </main>
     </div>
   </body>
 </html>
