@@ -1,31 +1,42 @@
-# Task Manager (Vanilla JS)
+# Task Manager
 
-Simple task manager built with HTML, CSS and JavaScript.
+Semplice applicazione web per gestire task (to-do), sviluppata in JavaScript.
 
-## Features
+## Funzionalità
 
-- Add new tasks
-- Delete tasks
-- Change task status (todo / doing / done)
-- Filter tasks
+- Aggiungere, modificare ed eliminare task
+- Cambiare stato (Todo, Doing, Done)
+- Impostare priorità, categoria e data
+- Filtrare e cercare task
+- Visualizzare statistiche e progresso
+- Salvare i dati in localStorage
+- Tema dark/light
+- Import/Export task in JSON
 
-## Tech
+## Tecnologie
 
 - HTML
 - CSS
-- JavaScript (Vanilla)
+- JavaScript (moduli ES)
+- localStorage
 
-## How it works
+## Struttura
 
-Tasks are stored in a local array and rendered dynamically in the DOM.
-User interactions (add, delete, update) modify the array and trigger a re-render.
+```id="a1b2c3"
+js/
+├── main.js
+├── tasks.js
+├── render.js
+├── events.js
+├── storage.js
+├── state.js
+```
 
-## Future improvements
+## ▶ Avvio
 
-- Save tasks with localStorage
-- Drag & drop (Trello style)
-- React version
+Apri il file `index.html` nel browser
+oppure usa Live Server in VS Code
 
-## Author
+## Note
 
-- GeorgeMohanu
+I dati sono salvati nel browser (localStorage), quindi non serve backend.
